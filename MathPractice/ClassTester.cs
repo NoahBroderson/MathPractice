@@ -83,6 +83,7 @@ namespace MathPractice
             lblProblem.Text = string.Format("{0} {1} {2}= ?", NextProblem.Factor1, NextProblem.DisplayOperator, NextProblem.Factor2);
             cboOperator.SelectedIndex = (int)NextProblem.Operator;
             CurrentProblem = NextProblem;
+            CurrentProblem.StartSolving();
             txtAnswer.Focus();
 
             ReadProblemAloud();
@@ -228,6 +229,7 @@ namespace MathPractice
         private void CheckAnswer()
         {
             int Answer = 0;
+            CurrentProblem.FinishSolving();
 
             if ((!int.TryParse(txtAnswer.Text, out Answer)))
             {
@@ -272,13 +274,13 @@ namespace MathPractice
         {
             if (AnsweredCorrectly)
             {
-                lbCorrectProblems.Items.Add(CurrentProblem.Equation);
+                lbCorrectProblems.Items.Add(string.Format("{0} : {1} seconds", CurrentProblem.Equation, CurrentProblem.TimeToSolve));
                 CorrectlyAnswered += 1;
                 txtCorrect.Text = CorrectlyAnswered.ToString();
             }
             else
             {
-                lbIncorrectProblems.Items.Add(CurrentProblem.Equation);
+                lbIncorrectProblems.Items.Add(string.Format("{0} : {1} seconds", CurrentProblem.Equation, CurrentProblem.TimeToSolve));
                 IncorrectlyAnswered += 1;
                 txtIncorrect.Text = IncorrectlyAnswered.ToString();
             }

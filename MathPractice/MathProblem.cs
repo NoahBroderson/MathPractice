@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace MathPractice
 {
     abstract class MathProblem
@@ -25,6 +27,7 @@ namespace MathPractice
             }
 
         }
+
         public MathOperator Operator { get; set; }
 
         public enum MathOperator
@@ -59,9 +62,7 @@ namespace MathPractice
                 return _displayOperator;
             }
         }
-
-
-
+        
         public string Equation
         {
             get
@@ -74,7 +75,28 @@ namespace MathPractice
         {
             return this.Result.ToString();
         }
+
+        private DateTime StartTime;
+        public void StartSolving()
+        {
+            StartTime = DateTime.Now;
+        }
+
+        private DateTime EndTime;
+        public void FinishSolving()
+        {
+            EndTime = DateTime.Now;
+        }
+
+        public int TimeToSolve
+        {
+            get
+            {
+                return (EndTime - StartTime).Seconds;
+            }
+        }
     }
+
 
     class MultiplicationProblem : MathProblem
     {
