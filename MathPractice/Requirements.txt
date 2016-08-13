@@ -1,0 +1,28 @@
+﻿1. Login to customize for each kid
+2. Dynamic display of study material based on logon
+3. Select study item from dropdown
+2. Display study material
+	- New window
+	- Same window Child control
+
+
+	Game Ideas
+	1. Generate treasure hunt clues
+	2. generate sodokus (choose dificulty)
+	3. multiplication tables
+		create a list of lists of MathProblem objects
+		MultiplicationProblem objects could inherit from MathProblem (and so could Addition, Subtraction, etc. for changing math game easily)
+		the ToString() of the objects could be the result 
+		The problems can fire and event when solved that you can handle to update the datagrid cell to show value and highlight with red or green
+		the event could also add the problem to the history list
+	4. important words
+	5. Random math questions (graphics?)
+	6. Reading comprehension?
+
+
+
+
+
+
+
+
