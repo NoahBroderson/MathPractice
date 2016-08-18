@@ -38,7 +38,6 @@
             this.lblAnswer = new System.Windows.Forms.Label();
             this.lblFeedback = new System.Windows.Forms.Label();
             this.btnAnswer = new System.Windows.Forms.Button();
-            this.btnNextProblem = new System.Windows.Forms.Button();
             this.lblEquation = new System.Windows.Forms.Label();
             this.lblProblem = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -140,16 +139,6 @@
             this.btnAnswer.Text = "Check Answer";
             this.btnAnswer.UseVisualStyleBackColor = true;
             this.btnAnswer.Click += new System.EventHandler(this.btnAnswer_Click);
-            // 
-            // btnNextProblem
-            // 
-            this.btnNextProblem.Location = new System.Drawing.Point(303, 13);
-            this.btnNextProblem.Name = "btnNextProblem";
-            this.btnNextProblem.Size = new System.Drawing.Size(75, 23);
-            this.btnNextProblem.TabIndex = 11;
-            this.btnNextProblem.Text = "Next";
-            this.btnNextProblem.UseVisualStyleBackColor = true;
-            this.btnNextProblem.Click += new System.EventHandler(this.btnNextProblem_Click);
             // 
             // lblEquation
             // 
@@ -267,7 +256,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblProblem);
             this.Controls.Add(this.lblEquation);
-            this.Controls.Add(this.btnNextProblem);
             this.Controls.Add(this.btnAnswer);
             this.Controls.Add(this.lblFeedback);
             this.Controls.Add(this.lblAnswer);
@@ -298,7 +286,6 @@
         private System.Windows.Forms.Label lblAnswer;
         private System.Windows.Forms.Label lblFeedback;
         private System.Windows.Forms.Button btnAnswer;
-        private System.Windows.Forms.Button btnNextProblem;
         private System.Windows.Forms.Label lblEquation;
         private System.Windows.Forms.Label lblProblem;
         private System.Windows.Forms.Label label1;

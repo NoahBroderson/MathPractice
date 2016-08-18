@@ -55,7 +55,7 @@ namespace MathPractice
         void _recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             txtAnswer.Text = e.Result.Text;
-            CheckAnswer();
+            CheckAnswer(txtAnswer.Text);
         }
 
         private void DisplayNextProblem()
@@ -200,7 +200,6 @@ namespace MathPractice
             GiveUserFeedback(IsCorrectAnswer);
             UpDateScoreAndAnswerList(IsCorrectAnswer);
             lblEquation.Text = CurrentProblem.Equation;
-            btnNextProblem.Focus();
         }
 
         private void CheckIfQuizFinished()
@@ -214,22 +213,11 @@ namespace MathPractice
         private bool CheckAnswer(string text)
         {
             return (int.Parse(txtAnswer.Text) == CurrentProblem.Result);
-
         }
 
         void _recognizer_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
             lblFeedback.Text = e.Result.Alternates[0].Text;
-        }
-
-        private void btnNextProblem_Click(object sender, EventArgs e)
-        {
-            //DisplayNextProblem();
-        }
-
-        private void CheckAnswer()
-        {
-            
         }
 
         private void FinishQuiz()
