@@ -77,13 +77,13 @@ namespace MathPractice
         }
 
         private DateTime StartTime;
-        public void StartSolving()
+        public void StartTimer()
         {
             StartTime = DateTime.Now;
         }
 
         private DateTime EndTime;
-        public void FinishSolving()
+        public void StopTimer()
         {
             EndTime = DateTime.Now;
         }
