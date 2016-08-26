@@ -9,6 +9,8 @@ namespace MathPractice
 {
     public partial class frmTablesTester : Form
     {
+        //ToDo: Review/Refactor
+        //ToDo: Add test to check if problem took too long to solve, repeat if needed
         List<MultiplicationProblem> ProblemList = new List<MultiplicationProblem>();
         MultiplicationProblem CurrentProblem = null;
         int CorrectlyAnswered = 0;
