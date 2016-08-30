@@ -77,12 +77,14 @@ namespace MathPractice
         }
 
         private DateTime StartTime;
+
         public void StartTimer()
         {
             StartTime = DateTime.Now;
         }
 
         private DateTime EndTime;
+
         public void StopTimer()
         {
             EndTime = DateTime.Now;
@@ -95,9 +97,11 @@ namespace MathPractice
                 return (EndTime - StartTime).Seconds;
             }
         }
+
+        public ProblemSolvedDelegate ProblemSolved;
+
     }
-
-
+    
     class MultiplicationProblem : MathProblem
     {
         public MultiplicationProblem(int Factor1, int Factor2)
@@ -106,7 +110,7 @@ namespace MathPractice
             this.Factor1 = Factor1;
             this.Factor2 = Factor2;
         }
-
     }
+
 }
 

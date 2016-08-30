@@ -68,6 +68,7 @@
       <DependentUpon>ClassTester.cs</DependentUpon>
     </Compile>
     <Compile Include="MathProblem.cs" />
+    <Compile Include="ProblemSolvedEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
