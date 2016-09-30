@@ -106,7 +106,7 @@
             // 
             // txtAnswer
             // 
-            this.txtAnswer.Location = new System.Drawing.Point(126, 263);
+            this.txtAnswer.Location = new System.Drawing.Point(126, 313);
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.Size = new System.Drawing.Size(100, 20);
             this.txtAnswer.TabIndex = 0;
@@ -114,7 +114,7 @@
             // lblAnswer
             // 
             this.lblAnswer.AutoSize = true;
-            this.lblAnswer.Location = new System.Drawing.Point(49, 270);
+            this.lblAnswer.Location = new System.Drawing.Point(49, 320);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(45, 13);
             this.lblAnswer.TabIndex = 8;
@@ -123,16 +123,16 @@
             // lblFeedback
             // 
             this.lblFeedback.AutoSize = true;
-            this.lblFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFeedback.Location = new System.Drawing.Point(23, 362);
+            this.lblFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.lblFeedback.Location = new System.Drawing.Point(188, 363);
             this.lblFeedback.Name = "lblFeedback";
-            this.lblFeedback.Size = new System.Drawing.Size(61, 26);
+            this.lblFeedback.Size = new System.Drawing.Size(52, 24);
             this.lblFeedback.TabIndex = 9;
             this.lblFeedback.Text = "       ";
             // 
             // btnAnswer
             // 
-            this.btnAnswer.Location = new System.Drawing.Point(245, 260);
+            this.btnAnswer.Location = new System.Drawing.Point(245, 310);
             this.btnAnswer.Name = "btnAnswer";
             this.btnAnswer.Size = new System.Drawing.Size(133, 23);
             this.btnAnswer.TabIndex = 10;
@@ -144,7 +144,7 @@
             // 
             this.lblEquation.AutoSize = true;
             this.lblEquation.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEquation.Location = new System.Drawing.Point(25, 317);
+            this.lblEquation.Location = new System.Drawing.Point(28, 360);
             this.lblEquation.Name = "lblEquation";
             this.lblEquation.Size = new System.Drawing.Size(117, 29);
             this.lblEquation.TabIndex = 12;
@@ -154,7 +154,7 @@
             // 
             this.lblProblem.AutoSize = true;
             this.lblProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProblem.Location = new System.Drawing.Point(127, 181);
+            this.lblProblem.Location = new System.Drawing.Point(127, 231);
             this.lblProblem.Name = "lblProblem";
             this.lblProblem.Size = new System.Drawing.Size(200, 55);
             this.lblProblem.TabIndex = 13;
@@ -200,7 +200,7 @@
             this.lbCorrectProblems.FormattingEnabled = true;
             this.lbCorrectProblems.Location = new System.Drawing.Point(506, 92);
             this.lbCorrectProblems.Name = "lbCorrectProblems";
-            this.lbCorrectProblems.Size = new System.Drawing.Size(157, 290);
+            this.lbCorrectProblems.Size = new System.Drawing.Size(157, 225);
             this.lbCorrectProblems.TabIndex = 18;
             // 
             // lbIncorrectProblems
@@ -208,7 +208,7 @@
             this.lbIncorrectProblems.FormattingEnabled = true;
             this.lbIncorrectProblems.Location = new System.Drawing.Point(693, 92);
             this.lbIncorrectProblems.Name = "lbIncorrectProblems";
-            this.lbIncorrectProblems.Size = new System.Drawing.Size(157, 290);
+            this.lbIncorrectProblems.Size = new System.Drawing.Size(157, 225);
             this.lbIncorrectProblems.TabIndex = 19;
             // 
             // lblTables
@@ -245,7 +245,7 @@
             this.AcceptButton = this.btnAnswer;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 404);
+            this.ClientSize = new System.Drawing.Size(885, 467);
             this.Controls.Add(this.cboTables);
             this.Controls.Add(this.lblTables);
             this.Controls.Add(this.lbIncorrectProblems);

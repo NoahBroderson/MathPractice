@@ -67,6 +67,7 @@
     <Compile Include="ClassTester.Designer.cs">
       <DependentUpon>ClassTester.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logger.cs" />
     <Compile Include="MathProblem.cs" />
     <Compile Include="ProblemSolvedEvent.cs" />
     <Compile Include="Program.cs" />

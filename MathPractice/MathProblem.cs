@@ -3,10 +3,19 @@ using System;
 
 namespace MathPractice
 {
+    public enum AnswerSpeed
+    {
+        Fast,
+        Medium,
+        Slow
+    }
+
     abstract class MathProblem
     {
         public int Factor1 { get; set; }
         public int Factor2 { get; set; }
+        public AnswerSpeed SpeedAnswered { get; set; }
+
         public double Result
         {
             get
@@ -83,11 +92,21 @@ namespace MathPractice
             StartTime = DateTime.Now;
         }
 
-        private DateTime EndTime;
+        private DateTime EndTime
+        {
+            get
+            {
+                return _endTime;
+            }
+            set
+            {
+                _endTime = value;
+            }
+        }
 
         public void StopTimer()
         {
-            EndTime = DateTime.Now;
+            EndTime = DateTime.Now; 
         }
 
         public int TimeToSolve
@@ -99,7 +118,7 @@ namespace MathPractice
         }
 
         public ProblemSolvedDelegate ProblemSolved;
-
+        private DateTime _endTime;
     }
     
     class MultiplicationProblem : MathProblem

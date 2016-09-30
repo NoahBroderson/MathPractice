@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Windows.Forms;
@@ -18,6 +19,9 @@ namespace MathPractice
         int IncorrectlyAnswered = 0;
         SpeechRecognitionEngine _recognizer = new SpeechRecognitionEngine();
         SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
+        Logger Logger = new Logger();
+        int solutionTimeLimitFast = 5;
+        int solutionTimeLimitSlow = 10;
 
         public frmTablesTester()
         {
@@ -39,6 +43,8 @@ namespace MathPractice
             ClearOldQuiz();
             LoadProblemList();
             LoadSpeech();
+            Logger.LogEntry("Starting new quiz");
+            Logger.LogEntry("*****************");
             DisplayNextProblem();
         }
 
@@ -156,6 +162,7 @@ namespace MathPractice
             return NextProblem;
         }
 
+        
         private void LoadProblemList()
         {
             //var MultProb = new MultiplicationProblem() { Factor1 = 1, Factor2 = 2, Operator = MathProblem.MathOperator.Multiply };
@@ -183,9 +190,27 @@ namespace MathPractice
             if (AnswerIsInteger(txtAnswer.Text))
             {
                 CurrentProblem.StopTimer();
+                //ToDo - Use different flow control
+                if (CurrentProblem.TimeToSolve < solutionTimeLimitFast)
+                {
+                    CurrentProblem.SpeedAnswered = AnswerSpeed.Fast;
+                }
+                else if (CurrentProblem.TimeToSolve > solutionTimeLimitSlow)
+                {
+                    CurrentProblem.SpeedAnswered = AnswerSpeed.Slow;
+                }
+                else
+                {
+                    CurrentProblem.SpeedAnswered = AnswerSpeed.Medium;
+                }
                 QuestionCount += 1;
                 //_recognizer.SpeechRecognized -= _recognizer_SpeechRecognized;
                 bool IsCorrectAnswer = CheckAnswer(txtAnswer.Text);
+                GiveUserFeedback(IsCorrectAnswer);
+                if (CurrentProblem.SpeedAnswered == AnswerSpeed.Slow)
+                {
+                    IsCorrectAnswer = false;
+                }
                 UpdateUI(IsCorrectAnswer);
                 CheckIfQuizFinished();
                 DisplayNextProblem();
@@ -199,7 +224,6 @@ namespace MathPractice
 
         private void UpdateUI(bool IsCorrectAnswer)
         {
-            GiveUserFeedback(IsCorrectAnswer);
             UpDateScoreAndAnswerList(IsCorrectAnswer);
             lblEquation.Text = CurrentProblem.Equation;
         }
@@ -252,33 +276,79 @@ namespace MathPractice
 
         private void UpDateScoreAndAnswerList(bool AnsweredCorrectly)
         {
+            ListBox listBoxToUpdate;
+            string message = string.Format("{0} : {1} seconds", CurrentProblem.Equation, CurrentProblem.TimeToSolve);
+
             if (AnsweredCorrectly)
             {
                 CorrectlyAnswered += 1;
                 txtCorrect.Text = CorrectlyAnswered.ToString();
-                UpdateAnswerList(lbCorrectProblems);
+                listBoxToUpdate = lbCorrectProblems;
             }
             else
             {
                 IncorrectlyAnswered += 1;
                 txtIncorrect.Text = IncorrectlyAnswered.ToString();
-                UpdateAnswerList(lbIncorrectProblems);
+                listBoxToUpdate = lbIncorrectProblems;
             }
-        }
 
-        private void UpdateAnswerList(ListBox ListBoxToUpdate)
-        {
-            ListBoxToUpdate.Items.Add(string.Format("{0} : {1} seconds", CurrentProblem.Equation, CurrentProblem.TimeToSolve));
+            listBoxToUpdate.Items.Add(message);
+            Logger.LogEntry(string.Format("{0} - {1}", message, AnsweredCorrectly.ToString()));
         }
 
         private void GiveUserFeedback(bool AnswerCorrect)
         {
+            string message ="";
             if (AnswerCorrect)
             {
-                lblEquation.BackColor = System.Drawing.Color.Green;
+                //Todo - Switch or select case?
+                //if (CurrentProblem.SpeedAnswered == AnswerSpeed.Slow)
+                //{
+                //    lblEquation.BackColor = System.Drawing.Color.Red;
+                //    message = "Oooh, that was too slow! We'll count that as wrong and try again!";
+                //}
+                //else if (CurrentProblem.SpeedAnswered == AnswerSpeed.Medium)
+                //{
+                //    lblEquation.BackColor = System.Drawing.Color.Yellow;
+                //    message = "Hmmm, you had to think about that, we'll count it as correct but do it again for practice!";
+                //    ProblemList.Add(CurrentProblem);
+                //}
+                //else
+                //{
+                //    lblEquation.BackColor = System.Drawing.Color.Green;
+                //    message = "Great job! On to the next one!";
+                //}
+                switch (CurrentProblem.SpeedAnswered)
+                {
+                    case AnswerSpeed.Slow:
+                        {
+                            lblEquation.BackColor = System.Drawing.Color.Red;
+                            message = "Oooh, that was too slow! We'll count that as wrong and try again!";
+                            break;
+                        }
+                    case AnswerSpeed.Medium:
+                        {
+                            lblEquation.BackColor = System.Drawing.Color.Yellow;
+                            message = "Hmmm, you had to think about that, we'll count it as correct but do it again for practice!";
+                            ProblemList.Add(CurrentProblem);
+                            break;
+                        }
+                    case AnswerSpeed.Fast:
+                        {
+                            lblEquation.BackColor = System.Drawing.Color.Green;
+                            message = "Great job! On to the next one!";
+                            break;
+                        }
+                    default:
+                        {
+                            message = "Switch state not recognized";
+                            break;
+                        }
+                }
+
                 lblEquation.Text = CurrentProblem.Equation;
-                lblFeedback.Text = "Great job! On to the next one!";
-                _synthesizer.Speak("Great job!");
+                lblFeedback.Text = message;
+                _synthesizer.Speak(message);
                 ReadProblemAloud(true);
             }
             else
